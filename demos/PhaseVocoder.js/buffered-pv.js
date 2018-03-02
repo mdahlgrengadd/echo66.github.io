@@ -20,7 +20,7 @@ function BufferedPV(frameSize) {
 		var sampleCounter = 0;
 
         var il = _buffer.getChannelData(0);
-        var ir = _buffer.getChannelData(0);
+        var ir = _buffer.getChannelData(1);
         var ol = outputAudioBuffer.getChannelData(0);
         var or = outputAudioBuffer.getChannelData(1);
 
