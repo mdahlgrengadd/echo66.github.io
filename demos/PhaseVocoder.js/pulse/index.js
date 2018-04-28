@@ -10,7 +10,7 @@ loadPulse = () => {
         Module.wasmBinary = m;
 
         script = document.createElement('script');
-        script.src = 'https://rawgit.com/mdahlgrengadd/echo66.github.io/master/demos/PhaseVocoder.js/pulse/src/WASMkissFFT.js';
+        script.src = 'https://rawgit.com/mdahlgrengadd/echo66.github.io/master/demos/PhaseVocoder.js/pulse/src/wasmkissfft.js';
         script.type='text/javascript';
         script.onload = () => {
           console.log("Loaded Emscripten.");
