@@ -1,7 +1,7 @@
 var context = new AudioContext();
 
 var BUFFER_SIZE = 4096;
-var FRAME_SIZE  = 2*2048;
+var FRAME_SIZE  = 2048;
 
 var players = [];
 var playersIdCounter = 0;

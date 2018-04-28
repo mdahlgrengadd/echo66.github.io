@@ -1,13 +1,4 @@
-let pulse;
-loadPulse()
-	.then(module => {
-		pulse = module;
-		console.log("PULSE!");
-	}).catch(err => {
-		console.log("Error in loading module: ", err);
-	});
- 
- function BufferedPV(frameSize) {
+function BufferedPV(frameSize) {
 
 	var _frameSize = frameSize || 4096;
 	var _pvL = new PhaseVocoder(_frameSize, 44100); _pvL.init();

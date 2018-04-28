@@ -10,7 +10,7 @@ function PhaseVocoder(winSize, sampleRate) {
 
 	var _first = true;
 
-	var _overlapFactor = 8;
+	var _overlapFactor = 4;
 
 	var _lastInputAlpha = 1;
 
@@ -18,8 +18,7 @@ function PhaseVocoder(winSize, sampleRate) {
 	/******************* dsp.js FFT **********************/
 	/*****************************************************/
 
-	//var fft = new FFT(_winSize, sampleRate);
-	var fft = new pulse.fftReal(_winSize);
+	var fft = new FFT(_winSize, sampleRate);
 	/*****************************************************/
 	/*****************************************************/
 	/*****************************************************/
@@ -193,31 +192,12 @@ function PhaseVocoder(winSize, sampleRate) {
 		for (var i=0; i<winSize; i++) {
 			_inputFrame[i] = inputFrame[i] * windowFrame[i];
 		}
-		//var transform = pulsefft.forward(_inputFrame);
-		//console.log(pulseout);
 		
-		//console.log(inputFrame);
-		var scaleTransform = function (trans, size) {
-			var i = 0,
-				bSi = 1.0 / size,
-				x = trans;
-			while (i < x.length) {
-				x[i] *= bSi; i++;
-			}
-			return x;
-		};
-
-		//var scaled = scaleTransform(transform, winSize);
+		fft.forward(_inputFrame);
+		out.real = fft.real;
+		out.imag = fft.imag;
 		
-		var transform = fft.forward(_inputFrame);
-		var transScaled = scaleTransform(transform, winSize);
-		out.real = transScaled;//fft.ri;//fft.real;
-		out.imag = fft.ci;//fft.imag;
-		//console.log(pulsefft);
-		var scaling = 1.0 / winSize;
-
-		//var R = out.real; var I = out.imag;
-		var R = fft.ri; var I = fft.ci;
+		var R = out.real; var I = out.imag;
 		var P = out.phase; var M = out.magnitude;
 
 		for (var p=0; p<winSize && p<wantedSize; p++) {	
@@ -235,15 +215,9 @@ function PhaseVocoder(winSize, sampleRate) {
 	}
 
 	this.ISTFT_drom = function(real, imag, windowFrame, restoreEnergy, timeFrame) {
-		//console.log(imag);
-		//fft.inverse(real, imag, timeFrame);
-		//console.log(timeframe)
-		var out = fft.inverse( real);
-		for (var p = 0; p < timeFrame.length; p++) {
-			timeFrame[p] = out[p];
-			
-		}
-		
+
+		fft.inverse(real, imag, timeFrame);
+
 		return;
 
 	}

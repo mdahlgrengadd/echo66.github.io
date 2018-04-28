@@ -33,7 +33,7 @@ function WAAPlayerUI(id, title, player, gain, recorder) {
     _tempoSlider.type = 'range';
     _tempoSlider.max = 2;
     _tempoSlider.min = 0.5;
-    _tempoSlider.step = 0.001;
+    _tempoSlider.step = 0.01;
     _player.speed = 1;
     
     var _tempoSliderLabel = document.createElement('label');
