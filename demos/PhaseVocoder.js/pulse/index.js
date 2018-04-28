@@ -2,7 +2,7 @@ var Module = {};
 
 loadPulse = () => {
   return new Promise((resolve, reject) => {
-    fetch('pulse/src/wasmkissfft.wasm')
+    fetch('https://rawgit.com/mdahlgrengadd/echo66.github.io/master/demos/PhaseVocoder.js/pulse/src/WASMkissFFT.wasm')
     .then(console.log("made it into loadpulse"))
       .then(response => response.arrayBuffer())
       .then(console.log("step into m"))
@@ -10,7 +10,7 @@ loadPulse = () => {
         Module.wasmBinary = m;
 
         script = document.createElement('script');
-        script.src = 'pulse/src/wasmkissfft.js';
+        script.src = 'https://rawgit.com/mdahlgrengadd/echo66.github.io/master/demos/PhaseVocoder.js/pulse/src/WASMkissFFT.js';
         script.type='text/javascript';
         script.onload = () => {
           console.log("Loaded Emscripten.");
