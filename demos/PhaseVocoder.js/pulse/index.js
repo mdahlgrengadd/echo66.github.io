@@ -40,7 +40,7 @@ loadPulse = () => {
                 this.outptr, this.size * 2);
               }
             this.inverse = function(cin) {
-              this.cin.set(cpx);
+              this.cin.set(cin);
               _kiss_fft(this.icfg, this.inptr, this.outptr);
               return new Float32Array(HEAPU8.buffer,
                 this.outptr, this.size * 2);
