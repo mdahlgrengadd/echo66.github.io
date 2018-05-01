@@ -10,8 +10,7 @@ function PhaseVocoder(winSize, sampleRate) {
 
 	var _first = true;
 
-	var _overlapFactor = 8;
-
+	var _overlapFactor = 32;
 	var _lastInputAlpha = 1;
 
 	/*****************************************************/
